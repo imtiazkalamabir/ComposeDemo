@@ -48,6 +48,54 @@ class GenericProgrammingPractice {
         }
     }
 
+    /**
+     * Generic Functions
+     */
+    fun <T> someGenericFun(t: T): T {
+        val someObj = t
+        return someObj
+    }
 
+    fun <T> calculateLength(list: List<FuncPractice>): Int {
+        return list.size
+    }
 
+    fun <T, U, V> multipleDoSomething(t: T, u: U, v: V): V {
+        // do something
+        return v
+    }
+
+    /**
+     * Example of Generic methods
+     */
+    class SomeGenericClass<T> {
+        // Here this method receives arguments of the class's type T and the method's own type U.
+        // The class's type has been already declared in the class header, so we do not need to declare it again in the method.
+        fun <U> someGenericMethod(t: T, u: U): T {
+            // do something
+            return t
+        }
+    }
+
+    /**
+     * Extension functions
+     */
+    class SomeSwappingBox<T>(var value1: T, var value2: T)
+
+    fun <T> SomeSwappingBox<T>.changeBox() {
+        val temp = this.value1
+        this.value1 = this.value2
+        this.value2 = temp
+    }
+
+    fun main(){
+        // calling generic function
+        println(calculateLength<FuncPractice>(listOf(FuncPractice())))
+
+        // extension function of generic type class example
+        val box = SomeSwappingBox("android","kotline")
+        println("${box.value1} and ${box.value2}") // android and kotlin
+        box.changeBox()
+        println("${box.value1} and ${box.value2}") // kotlin and android
+    }
 }
